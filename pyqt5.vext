@@ -1,5 +1,8 @@
-# Pyqt4 vext
+# Pyqt5 vext
 #
+
+extra_paths:
+    {sip.default_sip_dir}
 
 # Vext will allow access to these modules
 modules:
