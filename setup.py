@@ -27,7 +27,7 @@ Should work on all platforms.
 
 setup(
     name='vext.pyqt5',
-    version='0.2.2',
+    version='0.4.99',
     description='Use system pyqt5 from a virtualenv',
     long_description=long_description,
 
