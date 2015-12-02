@@ -62,7 +62,7 @@ setup(
     # What does your project relate to?
     keywords='virtualenv pyqt5 qt vext',
 
-    install_requires=["vext"],
+    install_requires=["vext>=0.4.99"],
 
     # Install vext files
     data_files=[
