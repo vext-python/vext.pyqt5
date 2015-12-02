@@ -1,7 +1,22 @@
+#!/usr/bin/env python
+info="""
+Allow use of system PyQt5 from a virtualenv
+Should work on all platforms.
+
+Qt support is currently experimental.
+
+report bugs to https://github.com/stuaxo/vext
+"""
+
+version="0.4.99.1"
+vext_version="vext>=%s" % version
+ 
+
 import sys
 
 from glob import glob
 from os.path import dirname, abspath, join
+from textwrap import dedent
 
 from distutils import sysconfig
 from setuptools import setup
@@ -19,17 +34,12 @@ class CheckInstall(install):
     def run(self):
         self.do_egg_install()
         self.execute(_post_install, [], msg="Check system dependencies:")
- 
-long_description="""
-Allow use of system PyQt5 in a virtualenv  
-Should work on all platforms.
-"""
 
 setup(
     name='vext.pyqt5',
-    version='0.4.99',
+    version=version,
     description='Use system pyqt5 from a virtualenv',
-    long_description=long_description,
+    long_description=info,
 
     cmdclass={
         'install': CheckInstall,
@@ -62,7 +72,8 @@ setup(
     # What does your project relate to?
     keywords='virtualenv pyqt5 qt vext',
 
-    install_requires=["vext>=0.4.99"],
+    setup_requires=[vext_version],
+    install_requires=[vext_version],
 
     # Install vext files
     data_files=[
