@@ -8,7 +8,7 @@ Qt support is currently experimental.
 report bugs to https://github.com/stuaxo/vext
 """
 
-version="0.5.6"
+version="0.5.11"
 vext_version="vext>=%s" % version
 
 
@@ -17,18 +17,30 @@ from subprocess import call
 
 from setuptools import setup
 from setuptools.command.install import install
+from setuptools.command.install_lib import install_lib
+
+import sys
 
 vext_files = glob("*.vext")
 
-def _post_install():
-    cmd = ["vext", "-i" + (" -i".join(vext_files))]
+def _post_install(self):
+    cmd = ["vext", "-e", "-i" + (" -i".join(vext_files))]
     call(cmd)
 
 class Install(install):
     def run(self):
-        import sys
+        # from pip
+        #
+        # if ran from some setup.py then vexts own setup will take care of this...
+        #
+        # TOOD - Move this code to a common place.
+        print("vext.gi Install")
+        if sys.prefix == '/usr':
+            print "Not installing PTH file to real prefix"
+            return
+        call(["pip", "install", vext_version])
         self.do_egg_install()
-        self.execute(_post_install, [], msg="Install vext files:")
+        self.execute(_post_install, [self], msg="Install vext files:")
 
 setup(
     name='vext.pyqt5',
