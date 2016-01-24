@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+from __future__ import print_function
+
 info="""
 Allow use of system PyQt5 from a virtualenv
 Should work on all platforms.
@@ -8,7 +11,7 @@ Qt support is currently experimental.
 report bugs to https://github.com/stuaxo/vext
 """
 
-version="0.5.11"
+version="0.5.14"
 vext_version="vext>=%s" % version
 
 
@@ -36,7 +39,7 @@ class Install(install):
         # TOOD - Move this code to a common place.
         print("vext.gi Install")
         if sys.prefix == '/usr':
-            print "Not installing PTH file to real prefix"
+            print("Not installing PTH file to real prefix")
             return
         call(["pip", "install", vext_version])
         self.do_egg_install()
